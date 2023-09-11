@@ -63,23 +63,36 @@ async function delUser(id) {
     });
 };
 
+/**
+ * Retrieves a list of users from the database.
+ *
+ * @return {Promise<Array<User>>} The list of users.
+ */
+async function getUsers() {
+    const users = await User.findAll({attributes:['name']});
+    console.log("All users:",JSON.stringify(users, null,2));
+};
 
-// Test the User model by creating a new user
+/**
+ * Retrieves a user by their ID.
+ *
+ * @param {number} id - The ID of the user.
+ * @return {Promise<User>} - A promise that resolves to the user object.
+ */
+async function getUserById(id) {
+    const user = await User.findByPk(id);
+    console.log("User:",JSON.stringify(user,null,2));
+};
 
+/**
+ * Retrieves a user by their name from the database.
+ *
+ * @param {string} name - The name of the user to retrieve.
+ * @return {Promise<object>} - A promise that resolves to the user object.
+ */
+async function getUserByName(name) {
+    const user = await User.findOne({where:{name}});
+    console.log("User:",JSON.stringify(user,null,2));
+};
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-module.exports = { sequelize, User, addUser };
+getUserByName("Bob");
