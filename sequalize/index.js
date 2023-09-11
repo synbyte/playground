@@ -64,12 +64,22 @@ async function delUser(id) {
 };
 
 /**
- * Retrieves a list of users from the database.
+ * Retrieves a list of user names from the database.
  *
  * @return {Promise<Array<User>>} The list of users.
  */
-async function getUsers() {
+async function getUserNames() {
     const users = await User.findAll({attributes:['name']});
+    console.log("All users:",JSON.stringify(users, null,2));
+};
+
+/**
+ * Retrieves a list of users from the database.
+ *
+ * @return {Promise<Array<User>>} A promise that resolves to an array of User objects.
+ */
+async function getUsers() {
+    const users = await User.findAll();
     console.log("All users:",JSON.stringify(users, null,2));
 };
 
@@ -95,4 +105,3 @@ async function getUserByName(name) {
     console.log("User:",JSON.stringify(user,null,2));
 };
 
-getUserByName("Bob");
