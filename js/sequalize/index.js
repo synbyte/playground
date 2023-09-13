@@ -105,3 +105,4 @@ async function getUserByName(name) {
     console.log("User:",JSON.stringify(user,null,2));
 };
 
+getUserByName('blue');
